@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import  './App.css';
 import Persons from '../components/Persons/Persons';
+import Cockpit from '../components/cockpit/Cockpit';
 //import ErrorBoundary from '../errorBoundary/errorBoundary';
 class App extends Component {
   state = {
@@ -35,7 +36,6 @@ class App extends Component {
 
   render() {
     let persons = null;
-    let btnClass = '';
 if (this.state.showPersons) {
   persons = (
   <div> {
@@ -46,25 +46,15 @@ if (this.state.showPersons) {
   </div>  
     )
     
-    btnClass ='Red';
+   
       }
-      const assignedClasses = [];
-     
-      if (this.state.persons.length <= 2) {
-        assignedClasses.push('red');
-      }
-
-      if (this.state.persons.length <= 1) {
-        assignedClasses.push('bold');
-      }
+    
     return (
-     <div className='App'>
-     <h1>Hi i am a react app!</h1>
-      <p className ={assignedClasses.join(' ')}>This is really working!</p>
-      <button className = {btnClass} onClick = {this.toggleNameHandler}>Toggle persons</button>
-      {persons}
-      </div>
-    );
+      <div className='App'>
+      <Cockpit persons = {this.state.persons} showPersons = {this.state.showPersons} clicked = {this.toggleNameHandler} appTitle = {this.props.appTitle}/>
+    {persons}
+    </div>
+      );
  // return React.createElement('div',{className:'App'},React.createElement('h1',null,'I\'m react app'));
 }
 
