@@ -2,30 +2,35 @@ import React from 'react';
 
 import './Cockpit.css';
 
+
+
 const Cockpit = (props) => {
 
-    const assignedClasses = [];
-    let btnClass = '';
+let btnClass = '';
 
-    if(props.showPersons){
-        btnClass ='Red';
-    }
+let assignClass = [];
 
-    if (props.persons.length <= 2) {
-      assignedClasses.push('red');
-    }
+if(props.showPersons){
+  btnClass = 'Red';
+}
 
-    if (props.persons.length <= 1) {
-      assignedClasses.push('bold');
-    }
+  if (props.persons.length <= 2) {
+     assignClass.push('red');
+  }
 
-    return (
-        <div className ="Cockpit">
-        <h1>{props.appTitle}</h1>
-         <p className ={assignedClasses.join(' ')}>This is really working!</p>
-         <button className = {btnClass} onClick = {props.clicked}>Toggle persons</button>
-         </div>
-    )
-};
+  if(props.persons.length <= 1){ 
+    assignClass.push('bold');
+  }
+
+  
+  return (           
+    <div className ="Cockpit">
+      <h1>{props.appTitle}</h1>
+      <p className ={assignClass.join(' ')}>This is really working</p>
+      <button className ={btnClass} onClick ={props.nameChangeHandler}>Toggle Persons</button>
+    </div>
+  )
+}
+
 
 export default Cockpit;
