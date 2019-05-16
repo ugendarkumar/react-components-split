@@ -11,8 +11,20 @@ class Persons extends Component{
 //     }
 
     shouldComponentUpdate(nextProps,nextState){
-        console.log('Persons.js shouldComponentUpdate');
-        return true;
+      /* this method helps to optimize the component 
+    persons.js being a child component is updated/ re-rendered everytime 
+   there is a change in app.js
+
+   the below condition ensures the persons.js is re-rendered only when the 
+   array persons of reference type has changes
+
+      */
+        console.log('[Persons.js] shouldComponentUpdate');
+        if(nextProps.persons !== this.props.persons){
+            return true;
+        } else {
+            return false;
+        }  
     }
 
     getSnapshotBeforeUpdate(prevProps,prevState){
