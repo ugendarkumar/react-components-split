@@ -4,8 +4,7 @@ import './Cockpit.css';
 
 
 
-const Cockpit = (props) => {
-
+const Cockpit = props => {
   useEffect(() => {
    console.log('[Cockpit.js] useEffect');
    
@@ -32,11 +31,11 @@ if(props.showPersons){
   btnClass = 'Red';
 }
 
-  if (props.persons.length <= 2) {
+  if (props.personsLength <= 2) {
      assignClass.push('red');
   }
 
-  if(props.persons.length <= 1){ 
+  if(props.personsLength <= 1){ 
     assignClass.push('bold');
   }
 
@@ -51,4 +50,4 @@ if(props.showPersons){
 }
 
 
-export default Cockpit;
+export default React.memo(Cockpit);

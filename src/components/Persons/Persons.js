@@ -2,7 +2,7 @@ import  React , {Component} from "react";
 
 import Person from './Person/Person';
 
-class Persons extends Component{
+class Persons extends Component {
 
 
 //    static getDerivedStateFromProps(props,state){
@@ -10,22 +10,30 @@ class Persons extends Component{
 //    return state;
 //     }
 
-    shouldComponentUpdate(nextProps,nextState){
+  shouldComponentUpdate(nextProps,nextState){
       /* this method helps to optimize the component 
     persons.js being a child component is updated/ re-rendered everytime 
    there is a change in app.js
 
    the below condition ensures the persons.js is re-rendered only when the 
-   array persons of reference type has changes
+   array persons of reference type has changes  */
 
-      */
+   /*
+    PureComponent can also be used instead of optimizing using shouldComponentUpdate
+   */
+
+
         console.log('[Persons.js] shouldComponentUpdate');
-        if(nextProps.persons !== this.props.persons){
+        if(
+            nextProps.persons !== this.props.persons || 
+            nextProps.nameChange !== this.props.nameChange ||
+            nextProps.deletePerson !== this.props.deletePerson
+        ){
             return true;
         } else {
             return false;
         }  
-    }
+    }  
 
     getSnapshotBeforeUpdate(prevProps,prevState){
         console.log('Persons.js getSnapshotBeforeUpdate');

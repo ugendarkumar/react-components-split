@@ -93,7 +93,7 @@ if(this.state.showPersons){
    
      <button onClick = {this.showCockpit}>Toggle Cockpit</button>
        {(this.state.showCockpit) ? 
-       <Cockpit appTitle ={this.props.appTitle} showPersons = {this.state.showPersons} persons = {this.state.persons} nameChangeHandler = {(event ) => {this.togglePersonHandler(event)}}>
+       <Cockpit appTitle ={this.props.appTitle} showPersons = {this.state.showPersons} personsLength = {this.state.persons.length} nameChangeHandler = {(event ) => {this.togglePersonHandler(event)}}>
        </Cockpit>:null
        
        }
