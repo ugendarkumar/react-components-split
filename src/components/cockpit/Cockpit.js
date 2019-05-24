@@ -55,6 +55,7 @@ if(props.showPersons){
       <h1>{props.appTitle}</h1>
       <p className ={assignClass.join(' ')}>This is really working</p>
       <button ref = {toggleBtnRef} className ={btnClass} onClick ={props.nameChangeHandler}>Toggle Persons</button>
+      <button onClick = {props.login}>Login</button>
     </div>
   )
 }

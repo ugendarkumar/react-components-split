@@ -7,14 +7,10 @@ import propTypes from 'prop-types';
 
 class Person extends Component{
 
-
-
     constructor(props){
         super(props);
         this.inputElementRef = React.createRef();
     }
-
-
 
     componentDidMount(){
      //   document.querySelector('input').focus();
@@ -39,18 +35,21 @@ class Person extends Component{
 
     //[step - 2]
     console.log(this.inputElementRef.current)
-    this.inputElementRef.current.focus()
+    this.inputElementRef.current.focus();
+  
     }
 
     render(){
+        console.log(this.props.isAuth);
         console.log('[Person.js] rendering .............')
         
         // HOC Aux is used to wrap dom elements instaed of root elements like <div>
         // Built in fragment module can be used instead of creating HOC like Aux just import Fragment like 'Component'
-    // from 'react' and use <Fragment> </Fragment>
+        // from 'react' and use <Fragment> </Fragment>
 
         return (
             <Aux>
+                {this.props.isAuth ? <p>Authenticated</p>:<p>Log-in</p>}
                 <p onClick={this.props.delete} >I am {this.props.name} and age is {this.props.age}</p>
                 <input type="text"
                     onChange={this.props.change}
