@@ -3,6 +3,7 @@ import './Person.css';
 import Aux from '../../../hoc/Auxillary';
 import withClass from '../../../hoc/withClass';
 import propTypes from 'prop-types';
+import AuthContext from '../../../context/auth-context';
 
 
 class Person extends Component{
@@ -11,6 +12,8 @@ class Person extends Component{
         super(props);
         this.inputElementRef = React.createRef();
     }
+
+    static contextType = AuthContext;
 
     componentDidMount(){
      //   document.querySelector('input').focus();
@@ -36,7 +39,7 @@ class Person extends Component{
     //[step - 2]
     console.log(this.inputElementRef.current)
     this.inputElementRef.current.focus();
-  
+  console.log(this.context)
     }
 
     render(){
@@ -49,7 +52,10 @@ class Person extends Component{
 
         return (
             <Aux>
-                {this.props.isAuth ? <p>Authenticated</p>:<p>Log-in</p>}
+              
+                    {
+                        this.context.authenticated ? <p>Authenticated</p> : <p>Log-in</p>
+                    }
                 <p onClick={this.props.delete} >I am {this.props.name} and age is {this.props.age}</p>
                 <input type="text"
                     onChange={this.props.change}

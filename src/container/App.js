@@ -12,6 +12,8 @@ import Aux from '../hoc/Auxillary';
 import Cockpit from '../components/cockpit/Cockpit';
 import Persons from '../components/Persons/Persons';
 
+import AuthContext from '../context/auth-context';
+
 class App extends Component {
 
   constructor(props){
@@ -100,7 +102,6 @@ class App extends Component {
         <div>
           <Persons 
            persons={this.state.persons}
-           isAuthenticated = {this.state.authenticated}
            nameChange={this.nameChangeHandler}
            deletePerson={this.deletePersonHandler}>
            </Persons>
@@ -110,19 +111,20 @@ class App extends Component {
  
     return (
       <Aux>
-     <button onClick = {this.showCockpit}>Toggle Cockpit</button>
-       {(this.state.showCockpit) ? 
-       <Cockpit
-        appTitle ={this.props.appTitle}
-        login = {this.loginHandler}
-        showPersons = {this.state.showPersons} 
-        personsLength = {this.state.persons.length} 
-        nameChangeHandler = {(event ) => {this.togglePersonHandler(event)}}>
-       </Cockpit>:null
-       }
-        {persons}
-        </Aux>
-      );
+        <button onClick={this.showCockpit}>Toggle Cockpit</button>
+        <AuthContext.Provider value = {{authenticated:this.state.authenticated,login:this.loginHandler}}>
+          {(this.state.showCockpit) ?
+            <Cockpit
+              appTitle={this.props.appTitle}
+              showPersons={this.state.showPersons}
+              personsLength={this.state.persons.length}
+              nameChangeHandler={(event) => { this.togglePersonHandler(event) }}>
+            </Cockpit> : null
+          }
+          {persons}
+        </AuthContext.Provider>
+      </Aux>
+    );
  // return React.createElement('div',{className:'App'},React.createElement('h1',null,'I\'m react app'));
 }
 
